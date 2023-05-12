@@ -4,6 +4,8 @@ const CardGame = function (targetId) {
   const cards = [];
 
   const listCard = [
+    "1B",
+    "2B",
     "2C",
     "2D",
     "2H",
@@ -91,6 +93,18 @@ const CardGame = function (targetId) {
       cardClick(i);
     });
 
+    const displayMessage = (text) => {
+        if(text) {
+          messageWindow.style.display = "flex";
+          messageWindow.innerText = text;
+        } else {
+          messageWindow.style.display = "none";
+          messageWindow.innerText = "";
+        }
+      };
+    
+      displayMessage("â¬… Click deck to start game");
+
     felt.append(holder, newCard);
 
     cards.push(newCard);
@@ -148,6 +162,7 @@ const CardGame = function (targetId) {
   const cardClick = (id) => {
     if (!gameStarted) {
       dealCards();
+      messageWindow.style.display = "none";
     } else if (id !== card1 && !cards[id].matched) {
       showCard(id);
     }
